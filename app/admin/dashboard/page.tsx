@@ -1,19 +1,27 @@
-import { getDashboardStats } from "@/app/actions/dashboard-actions"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { BarChart3, Calendar, MapPin, Users } from "lucide-react"
+// app/admin/dashboard/page.tsx
+export const dynamic = 'force-dynamic'; // ✅ ensures cookies and server APIs work
+
+import { getDashboardStats } from "@/app/actions/dashboard-actions";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { BarChart3, Calendar, MapPin, Users } from "lucide-react";
 
 export default async function AdminDashboard() {
-  const stats = await getDashboardStats()
+  // Fetch dashboard stats (server-side)
+  const stats = await getDashboardStats();
 
   return (
     <div className="space-y-8">
+      {/* Header */}
       <div>
         <h1 className="text-4xl font-bold text-foreground">Dashboard</h1>
-        <p className="text-muted-foreground mt-2">Welcome to your Goldrock Safaris admin panel</p>
+        <p className="text-muted-foreground mt-2">
+          Welcome to your Goldrock Safaris admin panel
+        </p>
       </div>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Total Itineraries */}
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Itineraries</CardTitle>
@@ -25,6 +33,7 @@ export default async function AdminDashboard() {
           </CardContent>
         </Card>
 
+        {/* Total Bookings */}
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Bookings</CardTitle>
@@ -36,6 +45,7 @@ export default async function AdminDashboard() {
           </CardContent>
         </Card>
 
+        {/* Total Guests */}
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Guests</CardTitle>
@@ -47,6 +57,7 @@ export default async function AdminDashboard() {
           </CardContent>
         </Card>
 
+        {/* Pending Bookings */}
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Pending Bookings</CardTitle>
@@ -59,5 +70,5 @@ export default async function AdminDashboard() {
         </Card>
       </div>
     </div>
-  )
+  );
 }
